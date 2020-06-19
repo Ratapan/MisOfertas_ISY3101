@@ -1,0 +1,7 @@
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\MisOfertas.Wpf.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\Resources\Icons.baml
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\Resources\IconsNonShared.baml
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\MainWindow.g.cs
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\App.g.cs
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\MisOfertas.Wpf_MarkupCompile.cache
+C:\Users\HP\source\repos\MisOfertas\MisOfertas.Wpf\obj\Debug\MisOfertas.Wpf_MarkupCompile.lref
