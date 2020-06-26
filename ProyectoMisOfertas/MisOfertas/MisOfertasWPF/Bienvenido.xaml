@@ -1,0 +1,21 @@
+﻿<mah:MetroWindow x:Class="MisOfertasWPF.Bienvenido"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MisOfertasWPF"
+        mc:Ignorable="d"
+        Title="Bienvenido" Height="100" Width="450" AllowsTransparency="True" WindowButtonCommandsOverlayBehavior="Never" ResizeMode="NoResize" ResizeBorderThickness="0" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" ShowDialogsOverTitleBar="False" ShowIconOnTitleBar="False" ShowTitleBar="False">
+    <mah:MetroWindow.NonActiveBorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.NonActiveBorderBrush>
+    <mah:MetroWindow.BorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.BorderBrush>
+    <Grid>
+        <Border Background="Black" CornerRadius="30" Opacity="0.6"/>
+        <TextBox x:Name="txt_nombre" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Background="Transparent" BorderThickness="0" Foreground="White"/>
+
+    </Grid>
+</mah:MetroWindow>

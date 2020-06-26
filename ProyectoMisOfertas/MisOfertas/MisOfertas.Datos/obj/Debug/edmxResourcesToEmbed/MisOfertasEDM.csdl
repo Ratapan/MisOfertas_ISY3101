@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MisOfertasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="Rut" />
+    </Key>
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Idsexo" Type="Int32" Nullable="false" />
+    <Property Name="Idtienda" Type="Int32" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sexo" Relationship="Self.FK_Administrador_Sexo" FromRole="Administrador" ToRole="Sexo" />
+    <NavigationProperty Name="Tiendas" Relationship="Self.FK_Administrador_Tiendas" FromRole="Administrador" ToRole="Tiendas" />
+  </EntityType>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="Idciudad" />
+    </Key>
+    <Property Name="Idciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Ciudad" FromRole="Ciudad" ToRole="Cliente" />
+    <NavigationProperty Name="Tiendas" Relationship="Self.FK_Tiendas_Ciudad" FromRole="Ciudad" ToRole="Tiendas" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Rut" />
+    </Key>
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Idsexo" Type="Int32" Nullable="false" />
+    <Property Name="Idciudad" Type="Int32" Nullable="false" />
+    <Property Name="Nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Puntos" Type="Int32" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK_Cliente_Ciudad" FromRole="Cliente" ToRole="Ciudad" />
+    <NavigationProperty Name="Sexo" Relationship="Self.FK_Cliente_Sexo" FromRole="Cliente" ToRole="Sexo" />
+    <NavigationProperty Name="Valoracion_Oferta" Relationship="Self.FK_Valoracion_Oferta_Cliente" FromRole="Cliente" ToRole="Valoracion_Oferta" />
+  </EntityType>
+  <EntityType Name="Encargado_Tienda">
+    <Key>
+      <PropertyRef Name="Rut" />
+    </Key>
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Idsexo" Type="Int32" Nullable="false" />
+    <Property Name="Idtienda" Type="Int32" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sexo" Relationship="Self.FK_Encargado_Tienda_Sexo" FromRole="Encargado_Tienda" ToRole="Sexo" />
+    <NavigationProperty Name="Tiendas" Relationship="Self.FK_Encargado_Tienda_Tiendas" FromRole="Encargado_Tienda" ToRole="Tiendas" />
+  </EntityType>
+  <EntityType Name="Nota_Oferta">
+    <Key>
+      <PropertyRef Name="Idnotaoferta" />
+    </Key>
+    <Property Name="Idnotaoferta" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Valoracion_Oferta" Relationship="Self.FK_Valoracion_Oferta_Nota_Oferta" FromRole="Nota_Oferta" ToRole="Valoracion_Oferta" />
+  </EntityType>
+  <EntityType Name="Oferta">
+    <Key>
+      <PropertyRef Name="Idoferta" />
+    </Key>
+    <Property Name="Idoferta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Idproducto" Type="Int32" Nullable="false" />
+    <Property Name="Porc_dscto" Type="Double" Nullable="false" />
+    <Property Name="Fecha_desde" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Fecha_Hasta" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Oferta_Producto" FromRole="Oferta" ToRole="Producto" />
+    <NavigationProperty Name="Valoracion_Oferta" Relationship="Self.FK_Valoracion_Oferta_Oferta" FromRole="Oferta" ToRole="Valoracion_Oferta" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Idproducto" />
+    </Key>
+    <Property Name="Idproducto" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Idrubro" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
+    <Property Name="Totalstock" Type="Int32" Nullable="false" />
+    <Property Name="Fotoproducto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Oferta" Relationship="Self.FK_Oferta_Producto" FromRole="Producto" ToRole="Oferta" />
+    <NavigationProperty Name="Rubro" Relationship="Self.FK_Producto_Rubro" FromRole="Producto" ToRole="Rubro" />
+  </EntityType>
+  <EntityType Name="Rubro">
+    <Key>
+      <PropertyRef Name="Idrubro" />
+    </Key>
+    <Property Name="Idrubro" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Rubro" FromRole="Rubro" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="Idsexo" />
+    </Key>
+    <Property Name="Idsexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Sexo" FromRole="Sexo" ToRole="Administrador" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Sexo" FromRole="Sexo" ToRole="Cliente" />
+    <NavigationProperty Name="Encargado_Tienda" Relationship="Self.FK_Encargado_Tienda_Sexo" FromRole="Sexo" ToRole="Encargado_Tienda" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tiendas">
+    <Key>
+      <PropertyRef Name="Idtienda" />
+    </Key>
+    <Property Name="Idtienda" Type="Int32" Nullable="false" />
+    <Property Name="Idciudad" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Tiendas" FromRole="Tiendas" ToRole="Administrador" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK_Tiendas_Ciudad" FromRole="Tiendas" ToRole="Ciudad" />
+    <NavigationProperty Name="Encargado_Tienda" Relationship="Self.FK_Encargado_Tienda_Tiendas" FromRole="Tiendas" ToRole="Encargado_Tienda" />
+  </EntityType>
+  <EntityType Name="Valoracion_Oferta">
+    <Key>
+      <PropertyRef Name="Fotooferta" />
+      <PropertyRef Name="Idoferta" />
+      <PropertyRef Name="Rut" />
+      <PropertyRef Name="Idnotaoferta" />
+    </Key>
+    <Property Name="Fotooferta" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Idoferta" Type="Int32" Nullable="false" />
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Idnotaoferta" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Valoracion_Oferta_Cliente" FromRole="Valoracion_Oferta" ToRole="Cliente" />
+    <NavigationProperty Name="Nota_Oferta" Relationship="Self.FK_Valoracion_Oferta_Nota_Oferta" FromRole="Valoracion_Oferta" ToRole="Nota_Oferta" />
+    <NavigationProperty Name="Oferta" Relationship="Self.FK_Valoracion_Oferta_Oferta" FromRole="Valoracion_Oferta" ToRole="Oferta" />
+  </EntityType>
+  <Association Name="FK_Administrador_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="Idsexo" />
+      </Principal>
+      <Dependent Role="Administrador">
+        <PropertyRef Name="Idsexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Administrador_Tiendas">
+    <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="1" />
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tiendas">
+        <PropertyRef Name="Idtienda" />
+      </Principal>
+      <Dependent Role="Administrador">
+        <PropertyRef Name="Idtienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Idciudad" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Idciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiendas_Ciudad">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Idciudad" />
+      </Principal>
+      <Dependent Role="Tiendas">
+        <PropertyRef Name="Idciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="Idsexo" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Idsexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_Oferta_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Rut" />
+      </Principal>
+      <Dependent Role="Valoracion_Oferta">
+        <PropertyRef Name="Rut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encargado_Tienda_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
+    <End Role="Encargado_Tienda" Type="Self.Encargado_Tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="Idsexo" />
+      </Principal>
+      <Dependent Role="Encargado_Tienda">
+        <PropertyRef Name="Idsexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encargado_Tienda_Tiendas">
+    <End Role="Tiendas" Type="Self.Tiendas" Multiplicity="1" />
+    <End Role="Encargado_Tienda" Type="Self.Encargado_Tienda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tiendas">
+        <PropertyRef Name="Idtienda" />
+      </Principal>
+      <Dependent Role="Encargado_Tienda">
+        <PropertyRef Name="Idtienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_Oferta_Nota_Oferta">
+    <End Role="Nota_Oferta" Type="Self.Nota_Oferta" Multiplicity="1" />
+    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nota_Oferta">
+        <PropertyRef Name="Idnotaoferta" />
+      </Principal>
+      <Dependent Role="Valoracion_Oferta">
+        <PropertyRef Name="Idnotaoferta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oferta_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Idproducto" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="Idproducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoracion_Oferta_Oferta">
+    <End Role="Oferta" Type="Self.Oferta" Multiplicity="1" />
+    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oferta">
+        <PropertyRef Name="Idoferta" />
+      </Principal>
+      <Dependent Role="Valoracion_Oferta">
+        <PropertyRef Name="Idoferta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Producto_Rubro">
+    <End Role="Rubro" Type="Self.Rubro" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rubro">
+        <PropertyRef Name="Idrubro" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Idrubro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MisOfertasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Encargado_Tienda" EntityType="Self.Encargado_Tienda" />
+    <EntitySet Name="Nota_Oferta" EntityType="Self.Nota_Oferta" />
+    <EntitySet Name="Oferta" EntityType="Self.Oferta" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Rubro" EntityType="Self.Rubro" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tiendas" EntityType="Self.Tiendas" />
+    <EntitySet Name="Valoracion_Oferta" EntityType="Self.Valoracion_Oferta" />
+    <AssociationSet Name="FK_Administrador_Sexo" Association="Self.FK_Administrador_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Administrador" EntitySet="Administrador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Administrador_Tiendas" Association="Self.FK_Administrador_Tiendas">
+      <End Role="Tiendas" EntitySet="Tiendas" />
+      <End Role="Administrador" EntitySet="Administrador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Ciudad" Association="Self.FK_Cliente_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiendas_Ciudad" Association="Self.FK_Tiendas_Ciudad">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Tiendas" EntitySet="Tiendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Sexo" Association="Self.FK_Cliente_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Oferta_Cliente" Association="Self.FK_Valoracion_Oferta_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encargado_Tienda_Sexo" Association="Self.FK_Encargado_Tienda_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Encargado_Tienda" EntitySet="Encargado_Tienda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encargado_Tienda_Tiendas" Association="Self.FK_Encargado_Tienda_Tiendas">
+      <End Role="Tiendas" EntitySet="Tiendas" />
+      <End Role="Encargado_Tienda" EntitySet="Encargado_Tienda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Oferta_Nota_Oferta" Association="Self.FK_Valoracion_Oferta_Nota_Oferta">
+      <End Role="Nota_Oferta" EntitySet="Nota_Oferta" />
+      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oferta_Producto" Association="Self.FK_Oferta_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Oferta" EntitySet="Oferta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoracion_Oferta_Oferta" Association="Self.FK_Valoracion_Oferta_Oferta">
+      <End Role="Oferta" EntitySet="Oferta" />
+      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_Rubro" Association="Self.FK_Producto_Rubro">
+      <End Role="Rubro" EntitySet="Rubro" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

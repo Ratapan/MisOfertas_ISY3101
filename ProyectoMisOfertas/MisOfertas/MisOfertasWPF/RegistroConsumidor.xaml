@@ -1,0 +1,60 @@
+﻿<mah:MetroWindow x:Class="MisOfertasWPF.RegistroConsumidor"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MisOfertasWPF"
+        mc:Ignorable="d"
+        Title="RegistroConsumidor" Height="800" Width="600" AllowsTransparency="True" WindowButtonCommandsOverlayBehavior="Never" ResizeMode="NoResize" ResizeBorderThickness="0" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" ShowDialogsOverTitleBar="False" ShowIconOnTitleBar="False" ShowTitleBar="False">
+    <mah:MetroWindow.NonActiveBorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.NonActiveBorderBrush>
+    <mah:MetroWindow.BorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.BorderBrush>
+    <Grid>
+        <Border Background="#FFC79B74" CornerRadius="30"/>
+        <Image  Margin="212,19,213,613" Source="Imagenes/logo-removebg-preview.png"/>
+        <Button  Width="20" Height="20" Style="{DynamicResource BotonMinimal}" FontSize="14" Content="X" Margin="560,10,20,770" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+
+        <Border Background="#FFFFE9D6" Margin="20,199,20,10" CornerRadius="20" RenderTransformOrigin="0.389,0.488">
+            <Grid>
+                <TextBlock Text="Rut:" FontSize="30" Margin="191,35,300,506"/>
+                <TextBlock Text="Nombres:" FontSize="30" Margin="115,85,300,456"/>
+                <TextBlock Text="Apellidos:" FontSize="30" Margin="115,135,300,412"/>
+                <TextBlock Text="Sexo:" FontSize="30" Margin="174,185,300,356"/>
+                <TextBlock Text="Ciudad:" FontSize="30" Margin="144,235,286,306"/>
+                <TextBlock Text="Nacimiento:" FontSize="30" Margin="84,285,286,258"/>
+                <TextBlock Text="E-mail:" FontSize="30" Margin="154,337,300,218" RenderTransformOrigin="0.517,0.585"/>
+                <TextBlock Text="Contraseña:" FontSize="30" Margin="88,383,314,162"/>
+                <TextBlock Text="Conf. Contraseña:" FontSize="30" Margin="8,434,309,109"/>
+
+                <TextBox x:Name="txt_rut" Background="#FFFDF5EF" Margin="251,46,10,515"/>
+                <TextBox x:Name="txt_nombres" Background="#FFFDF5EF" Margin="251,96,10,465"/>
+                <TextBox x:Name="txt_apellidos" Background="#FFFDF5EF" Margin="251,146,10,415"/>
+                <ComboBox x:Name="cb_sexo" Background="#FFFDF5EF" Margin="251,196,10,365">
+                    <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                    <ListBoxItem Content="Hombre"/>
+                    <ListBoxItem Content="Mujer"/>
+                </ComboBox>
+                <ComboBox x:Name="cb_ciudad" Background="#FFFDF5EF" Margin="251,246,10,315">
+                    <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                    <ListBoxItem Content="Santiago"/>
+                    <ListBoxItem Content="Valparaiso"/>
+                    <ListBoxItem Content="Concepción"/>
+                </ComboBox>
+                <DatePicker x:Name="dp_nacimiento" Background="#FFFDF5EF" Margin="251,298,10,263"/>
+                <TextBox x:Name="txt_email" Background="#FFFDF5EF" Margin="251,344,10,217"/>
+                <PasswordBox x:Name="pass_contrasena" Background="#FFFDF5EF" Margin="251,390,10,171"/>
+                <PasswordBox x:Name="pass_confir_contrasena" Background="#FFFDF5EF" Margin="251,442,10,119"/>
+
+                <Button x:Name="Btn_registrar" Content="Registrar" FontSize="25" Margin="153,517,171,0" VerticalAlignment="Top" Width="236"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Btn_registrar_Click" />
+
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+</mah:MetroWindow>

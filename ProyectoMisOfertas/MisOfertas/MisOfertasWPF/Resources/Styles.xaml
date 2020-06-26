@@ -1,0 +1,101 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MisOfertasWPF.Resources">
+
+
+    <!--BORDER-->
+    <Style TargetType="Border" x:Key="BarraSuperior">
+        <Setter Property="Background" Value="#FF3C3C3C"/>
+        <Setter Property="CornerRadius" Value="30,30,0,0"/>
+        <Setter Property="Margin" Value="0,0,0,672"/>
+    </Style>
+
+    <!--END BORDER-->
+
+
+    <!--BOTONES-->
+
+    <Style TargetType="Button" x:Key="BotonMinimal">
+        <Setter Property="Background" Value="#FFBD6F29"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="BotonSinFondo">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        
+
+    </Style>
+
+    <!--<Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Button}">
+                <Grid x:Name="grid">
+                    <Border x:Name="border" CornerRadius="0,20,20,0" BorderBrush="#707070" BorderThickness="1" Background="#FF363636">
+                        <ContentPresenter HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                      TextElement.FontWeight="Normal">
+                        </ContentPresenter>
+                    </Border>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" TargetName="border" Value="#BEE6FD"/>
+                        <Setter Property="BorderBrush" TargetName="border" Value="#3C7FB1"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="BorderBrush" TargetName="border" Value="#2C628B"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>-->
+
+    <!--END BOTONES-->
+
+    <!--IMAGENES-->
+
+    <!--END IMAGENES-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ResourceDictionary>
