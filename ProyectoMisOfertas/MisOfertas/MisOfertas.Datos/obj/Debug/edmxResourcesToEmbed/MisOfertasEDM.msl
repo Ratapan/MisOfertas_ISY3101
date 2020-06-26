@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MisOfertasModelStoreContainer" CdmEntityContainer="MisOfertasEntities">
+    <EntitySetMapping Name="Administrador">
+      <EntityTypeMapping TypeName="MisOfertasModel.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Idsexo" ColumnName="Idsexo" />
+          <ScalarProperty Name="Idtienda" ColumnName="Idtienda" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciudad">
+      <EntityTypeMapping TypeName="MisOfertasModel.Ciudad">
+        <MappingFragment StoreEntitySet="Ciudad">
+          <ScalarProperty Name="Idciudad" ColumnName="Idciudad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="MisOfertasModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Idsexo" ColumnName="Idsexo" />
+          <ScalarProperty Name="Idciudad" ColumnName="Idciudad" />
+          <ScalarProperty Name="Nacimiento" ColumnName="Nacimiento" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Encargado_Tienda">
+      <EntityTypeMapping TypeName="MisOfertasModel.Encargado_Tienda">
+        <MappingFragment StoreEntitySet="Encargado_Tienda">
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Idsexo" ColumnName="Idsexo" />
+          <ScalarProperty Name="Idtienda" ColumnName="Idtienda" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nota_Oferta">
+      <EntityTypeMapping TypeName="MisOfertasModel.Nota_Oferta">
+        <MappingFragment StoreEntitySet="Nota_Oferta">
+          <ScalarProperty Name="Idnotaoferta" ColumnName="Idnotaoferta" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oferta">
+      <EntityTypeMapping TypeName="MisOfertasModel.Oferta">
+        <MappingFragment StoreEntitySet="Oferta">
+          <ScalarProperty Name="Idoferta" ColumnName="Idoferta" />
+          <ScalarProperty Name="Idproducto" ColumnName="Idproducto" />
+          <ScalarProperty Name="Porc_dscto" ColumnName="Porc_dscto" />
+          <ScalarProperty Name="Fecha_desde" ColumnName="Fecha_desde" />
+          <ScalarProperty Name="Fecha_Hasta" ColumnName="Fecha_Hasta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="MisOfertasModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="Idproducto" ColumnName="Idproducto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Idrubro" ColumnName="Idrubro" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Totalstock" ColumnName="Totalstock" />
+          <ScalarProperty Name="Fotoproducto" ColumnName="Fotoproducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rubro">
+      <EntityTypeMapping TypeName="MisOfertasModel.Rubro">
+        <MappingFragment StoreEntitySet="Rubro">
+          <ScalarProperty Name="Idrubro" ColumnName="Idrubro" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sexo">
+      <EntityTypeMapping TypeName="MisOfertasModel.Sexo">
+        <MappingFragment StoreEntitySet="Sexo">
+          <ScalarProperty Name="Idsexo" ColumnName="Idsexo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MisOfertasModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tiendas">
+      <EntityTypeMapping TypeName="MisOfertasModel.Tiendas">
+        <MappingFragment StoreEntitySet="Tiendas">
+          <ScalarProperty Name="Idtienda" ColumnName="Idtienda" />
+          <ScalarProperty Name="Idciudad" ColumnName="Idciudad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Valoracion_Oferta">
+      <EntityTypeMapping TypeName="MisOfertasModel.Valoracion_Oferta">
+        <MappingFragment StoreEntitySet="Valoracion_Oferta">
+          <ScalarProperty Name="Fotooferta" ColumnName="Fotooferta" />
+          <ScalarProperty Name="Idoferta" ColumnName="Idoferta" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Idnotaoferta" ColumnName="Idnotaoferta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

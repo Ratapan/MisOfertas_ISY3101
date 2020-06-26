@@ -1,0 +1,103 @@
+﻿<mah:MetroWindow x:Class="MisOfertasWPF.PerfilAdministrador"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MisOfertasWPF"
+        mc:Ignorable="d"
+        Title="PerfilAdministrador" Height="800" Width="1280" AllowsTransparency="True" WindowButtonCommandsOverlayBehavior="Never" ResizeMode="NoResize" ResizeBorderThickness="0" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" ShowDialogsOverTitleBar="False" ShowIconOnTitleBar="False" ShowTitleBar="False">
+    <mah:MetroWindow.NonActiveBorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.NonActiveBorderBrush>
+    <mah:MetroWindow.BorderBrush>
+        <ImageBrush/>
+    </mah:MetroWindow.BorderBrush>
+    <Grid>
+        <Border Background="#FFFFE9D6" CornerRadius="30"/>
+        <Border Style="{DynamicResource BarraSuperior}"/>
+
+        <Border Background="#FFF1CBA9" Margin="40,154,40,24" CornerRadius="20"/>
+        <Image  Margin="10,10,1008,577" Source="Imagenes/logo-removebg-preview.png"/>
+
+        <mah:MetroTabControl Name="TCPrincipal" Background="Transparent"  mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True">
+            <mah:MetroTabItem Header="• Mantención de perfiles" Margin="288,84,-288,-84">
+                <Grid>
+
+                    <Border Background="#FF3C3C3C" CornerRadius="20" Margin="58,199,982,335">
+                        <Image Source="Imagenes/user (1).png" Margin="0,10"/>
+                    </Border>
+                    <Border Background="#FFFFE9D6" Margin="316,199,58,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488">
+                        <Grid>
+                            <TextBlock Text="Rut:" FontSize="30" Margin="388,60,456,411"/>
+                            <TextBlock Text="Nombres:" FontSize="30" Margin="314,110,456,361"/>
+                            <TextBlock Text="Apellidos:" FontSize="30" Margin="314,160,456,311"/>
+                            <TextBlock Text="Sexo:" FontSize="30" Margin="374,210,456,261"/>
+                            <TextBlock Text="Tienda:" FontSize="30" Margin="349,260,450,211"/>
+                            <TextBlock Text="Tipo de Usuario:" FontSize="30" Margin="228,310,446,161"/>
+                            <TextBlock Text="Contraseña:" FontSize="30" Margin="287,364,456,107"/>
+                            <TextBlock Text="Confirmar Contraseña:" FontSize="30" Margin="148,414,451,57"/>
+
+                            <TextBox x:Name="txt_rut" Margin="455,64,201,423" Background="#FFFDF5EF"/>
+                            <TextBox x:Name="txt_nombres" Margin="455,116,201,371" Background="#FFFDF5EF"/>
+                            <TextBox x:Name="txt_apellidos" Margin="455,166,201,321" Background="#FFFDF5EF"/>
+                            <ComboBox x:Name="cb_sexo" Margin="455,216,201,271" Background="#FFFDF5EF">
+                                <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                                <ListBoxItem Content="Hombre"/>
+                                <ListBoxItem Content="Mujer"/>
+                            </ComboBox>
+                            <ComboBox x:Name="cb_tienda" Margin="455,266,201,221" Background="#FFFDF5EF">
+                                <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                                <ListBoxItem Content="Tienda Santiago centro"/>
+                                <ListBoxItem Content="Tienda San Antonio"/>
+                                <ListBoxItem Content="Tienda Gran Concepcion"/>
+                            </ComboBox>
+                            <ComboBox x:Name="cb_tipo" Margin="455,316,201,171" Background="#FFFDF5EF">
+                                <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                                <ListBoxItem Content="Administrador"/>
+                                <ListBoxItem Content="Encargado de Tienda"/>
+                            </ComboBox>
+                            <TextBox x:Name="txt_contrasena" Margin="455,372,201,115" Background="#FFFDF5EF"/>
+                            <TextBox x:Name="txt_conf_contrasena" Margin="455,422,201,65" Background="#FFFDF5EF"/>
+
+                            <Button Content="Registrar" FontSize="25" Margin="-252,273,923,0" VerticalAlignment="Top" Width="235"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Button_Click"/>
+                            <Button Content="Modificar" FontSize="25" Margin="-252,326,923,0" VerticalAlignment="Top" Width="235"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Button_Click_3"/>
+                            <Button Content="Eliminar" FontSize="25" Margin="-252,380,923,0" VerticalAlignment="Top" Width="235"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Button_Click_4"/>
+                            <Button Content="Limpiar" FontSize="25" Margin="661,477,10,0" VerticalAlignment="Top" Width="235"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Button_Click_2"/>
+                            <Button Style="{DynamicResource BotonSinFondo}" Margin="710,64,148,423" Click="Button_Click_1">
+                                <Image Source="Imagenes/Search-WF.png"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+
+
+
+
+                </Grid>
+
+
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Header="• Publicar Ofertas" Margin="312,85,-312,-86" HorizontalAlignment="Left" Width="217">
+                <Grid>
+                    <Border Background="#FFFFE9D6" Margin="55,199,979,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488"/>
+                    <Border Background="#FFFFE9D6" Margin="316,199,58,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488">
+                        <Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </mah:MetroTabItem>
+        </mah:MetroTabControl>
+
+        <Button x:Name="Btn_iniciarS" Foreground="White" FontSize="30" Style="{DynamicResource BotonSinFondo}" Margin="1107,83,0,686" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="31" HorizontalAlignment="Center" Width="173" Click="Btn_iniciarS_Click">
+            <StackPanel Height="31" Orientation="Horizontal" Width="157">
+                <Image Source="Imagenes/Exit-WF.png" HorizontalAlignment="Center" VerticalAlignment="Top" Width="38" />
+                <TextBlock Text="Cerrar Sesiòn" FontSize="20" Foreground="White" Width="116" />
+            </StackPanel>
+        </Button>
+        <Button  Width="20" Height="20" Style="{DynamicResource BotonMinimal}" FontSize="14" Content="X" Margin="1240,10,20,770" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF3C3C3C" Click="Button_Click_5"/>
+
+    </Grid>
+</mah:MetroWindow>

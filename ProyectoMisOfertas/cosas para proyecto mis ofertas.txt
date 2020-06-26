@@ -1,0 +1,13 @@
+----metodo para emcriptar-----
+https://hdeleon.net/funcion-para-encriptar-en-sha256-en-c-net/
+--------------------------------
+
+------video inicio de sesion (validacion)------
+https://www.youtube.com/watch?v=xUvJhe7Nvgc
+----------------------
+
+--------pagina para emcriptar-------
+https://emn178.github.io/online-tools/sha256.html
+----------------------
+
+
