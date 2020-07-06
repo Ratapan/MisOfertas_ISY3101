@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MisOfertas.Negocio;
 
 namespace MisOfertasWPF
 {
@@ -32,15 +33,12 @@ namespace MisOfertasWPF
 
         private async void Btn_Iniciarsesion_Click(object sender, RoutedEventArgs e)
         {
-            //encriptacion de la contraseña para poder compararla con la que esta en la BBDD
-            string pass = Encrypt.Encriptar(pass_contrasena.Password.ToString().Trim());
-
             MisOfertas.Negocio.Administrador admin = new MisOfertas.Negocio.Administrador();
 
             //llamando a metodo para validar datos
-            if (admin.ValidacionAdmin(txt_usuario.Text, pass))
+            if (admin.ValidacionAdmin(txt_usuario.Text, pass_contrasena.Password.ToString().Trim()))
             {
-                //MessageBox.Show("Usuario Existe", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                
                 Bienvenido saludo = new Bienvenido();
 
                 admin.Rut = txt_usuario.Text;
@@ -60,7 +58,7 @@ namespace MisOfertasWPF
             }
             else
             {
-                //MessageBox.Show("Usuario No Existe", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                
                 await this.ShowMessageAsync("ERROR", "Usuario No Encontrado // Usuario o Contraseña Incorrecto");
             }
         }

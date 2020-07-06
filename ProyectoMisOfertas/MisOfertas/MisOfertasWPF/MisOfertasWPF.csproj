@@ -217,6 +217,9 @@
   <ItemGroup>
     <Resource Include="Imagenes\6452711.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\pngwing.com %282%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

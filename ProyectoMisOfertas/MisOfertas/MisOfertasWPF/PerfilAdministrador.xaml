@@ -20,8 +20,63 @@
         <Border Background="#FFF1CBA9" Margin="40,154,40,24" CornerRadius="20"/>
         <Image  Margin="10,10,1008,577" Source="Imagenes/logo-removebg-preview.png"/>
 
-        <mah:MetroTabControl Name="TCPrincipal" Background="Transparent"  mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True">
-            <mah:MetroTabItem Header="• Mantención de perfiles" Margin="288,84,-288,-84">
+        <mah:MetroTabControl Name="TCPrincipal" Background="Transparent" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True">
+            <mah:MetroTabItem Header="• Productos" Margin="279,86,-279,-86">
+                <Grid>
+                    <Border Background="#FFBD6F29" Opacity="0.4" Margin="40,184,40,20" CornerRadius="30"/>
+                    <ListBox x:Name="lboxProductosAdmi" Background="Transparent" Margin="50,193,50,29" ScrollViewer.HorizontalScrollBarVisibility = "Disabled" ItemTemplate="{DynamicResource ProductoTemplate}" ItemContainerStyle="{StaticResource ProductoItemContainerStyle}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation = "Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Border Background="#FFBD6F29" Margin="249,100,40,591" Opacity="0.7" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="267*"/>
+                                <ColumnDefinition Width="724*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_todos" Margin="50,10,42,10" Content="Todos" Style="{DynamicResource BotonFiltro}" Click="Btn_todos_Click"/>
+                            <Button x:Name="btn_alimentos" Margin="230,10,586,10" Content="Alimentos" Style="{DynamicResource BotonFiltro}"  Grid.ColumnSpan="2" Click="Btn_alimentos_Click"/>
+                            <Button x:Name="btn_electronica" Margin="143,10,406,10" Content="Electronica" Style="{DynamicResource BotonFiltro}"  Grid.Column="1" Click="Btn_electronica_Click"/>
+                            <Button x:Name="btn_blanca" Margin="323,10,226,10" Content="Linea Blanca" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_blanca_Click"/>
+                            <Button x:Name="btn_ropa" Margin="503,10,46,10" Content="Ropa" Style="{DynamicResource BotonFiltro}"  Grid.Column="1" Click="Btn_ropa_Click"/>
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Header="• Ofertas" Margin="279,86,-279,-86">
+                <Grid>
+                    <Border Background="#FFBD6F29" Opacity="0.4" Margin="40,184,40,20" CornerRadius="30"/>
+                    <ListBox x:Name="lboxOfertasAdmi" Background="Transparent" Margin="50,193,50,29" ScrollViewer.HorizontalScrollBarVisibility = "Disabled" ItemTemplate="{DynamicResource OfertaTemplate}" ItemContainerStyle="{StaticResource OfertaItemContainerStyle}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation = "Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Border Background="#FFBD6F29" Margin="249,100,40,591" Opacity="0.7" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="267*"/>
+                                <ColumnDefinition Width="724*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_todosOfer" Margin="50,10,42,10" Content="Todos" Style="{DynamicResource BotonFiltro}" Click="Btn_todosOfer_Click" />
+                            <Button x:Name="btn_alimentosOfer" Margin="230,10,586,10" Content="Alimentos" Style="{DynamicResource BotonFiltro}" Grid.ColumnSpan="2" Click="Btn_alimentosOfer_Click" />
+                            <Button x:Name="btn_electronicaOfer" Margin="143,10,406,10" Content="Electronica" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_electronicaOfer_Click" />
+                            <Button x:Name="btn_blancaOfer" Margin="323,10,226,10" Content="Linea Blanca" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_blancaOfer_Click" />
+                            <Button x:Name="btn_ropaOfer" Margin="503,10,46,10" Content="Ropa" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_ropaOfer_Click"/>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </mah:MetroTabItem>
+
+            <mah:MetroTabItem Header="• Mantención de perfiles" Margin="288,86,-288,-84">
                 <Grid>
 
                     <Border Background="#FF3C3C3C" CornerRadius="20" Margin="58,199,982,335">
@@ -78,14 +133,33 @@
 
 
             </mah:MetroTabItem>
-            <mah:MetroTabItem Header="• Publicar Ofertas" Margin="312,85,-312,-86" HorizontalAlignment="Left" Width="217">
+            <mah:MetroTabItem Header="• Publicar Ofertas" Margin="296,86,-296,-86" HorizontalAlignment="Left" Width="217">
                 <Grid>
-                    <Border Background="#FFFFE9D6" Margin="55,199,979,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488"/>
-                    <Border Background="#FFFFE9D6" Margin="316,199,58,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488">
-                        <Grid>
+                    <Border Background="#FFFFE9D6" Margin="55,191,808,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488"/>
+                    <Border Background="#FFFFE9D6" Margin="487,132,58,41" CornerRadius="20" RenderTransformOrigin="0.389,0.488"/>
+                    <Border Background="#FF3C3C3C" Margin="487,132,58,449" CornerRadius="20,20,0,0" RenderTransformOrigin="0.389,0.488"/>
+                    <Image x:Name="Img_Produc" Margin="559,132,526,449"/>
+                    <Border Background="#FFFFE9D6" Margin="230,132,808,575" CornerRadius="20" RenderTransformOrigin="0.389,0.488"/>
+                    <ListBox x:Name="lboxProductos" Background="Transparent" Margin="64,201,817,52" ItemTemplate="{DynamicResource ProductoTemplateNoImagen}" ItemContainerStyle="{StaticResource ProductoItemContainerNoImagenStyle}" SelectionChanged="LboxProductos_SelectionChanged">
+                    </ListBox>
+                    <ComboBox x:Name="cb_rubro" Margin="244,135,821,579" Background="Transparent" BorderThickness="0" SelectedIndex="0" FontSize="20" HorizontalContentAlignment="Center" SelectionChanged="Cb_rubro_SelectionChanged">
+                        <ListBoxItem Content="&lt;Rubro&gt;"/>
+                        <ListBoxItem Content="Alimentos"/>
+                        <ListBoxItem Content="Electronica"/>
+                        <ListBoxItem Content="Linea Blanca"/>
+                        <ListBoxItem Content="Ropa"/>
+                    </ComboBox>
+                    <TextBlock Text="Porcentaje de Descuento:               %" FontSize="30" Margin="499,362,124,359" RenderTransformOrigin="0.721,1.92"/>
+                    <TextBlock Text="Fecha Desde:" FontSize="30" Margin="660,416,438,305" RenderTransformOrigin="0.721,1.92"/>
+                    <TextBlock Text="Fecha Hasta:" FontSize="30" Margin="666,468,442,253" RenderTransformOrigin="0.721,1.92"/>
+                    <TextBox x:Name="txt_NomProduc" Margin="768,140,71,575" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="39" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="26" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_ValorProduc" Margin="768,201,71,514" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="39" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="26" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_Stockproduc" Margin="768,262,71,453" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="39" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="26" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_descuento" Margin="856,362,323,359" Background="#FFFDF5EF" FontSize="24" Padding="0"/>
+                    <DatePicker x:Name="dp_fdesde" Margin="856,417,170,305" Background="#FFFDF5EF" FontSize="20" Padding="0" IsEnabled="False"/>
+                    <DatePicker x:Name="dp_fhasta" Margin="856,469,170,253" Background="#FFFDF5EF" FontSize="20" Padding="0"/>
+                    <Button x:Name="btn_confirmar" Content="Confirmar" FontSize="20" Margin="1007,658,71,52" Style="{DynamicResource BotonMinimal}" Click="Btn_confirmar_Click"/>
 
-                        </Grid>
-                    </Border>
                 </Grid>
 
             </mah:MetroTabItem>

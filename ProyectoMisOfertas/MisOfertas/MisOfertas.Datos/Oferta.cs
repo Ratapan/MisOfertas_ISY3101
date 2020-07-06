@@ -14,20 +14,16 @@ namespace MisOfertas.Datos
     
     public partial class Oferta
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Oferta()
-        {
-            this.Valoracion_Oferta = new HashSet<Valoracion_Oferta>();
-        }
-    
         public int Idoferta { get; set; }
         public int Idproducto { get; set; }
+        public string Descripcion { get; set; }
         public double Porc_dscto { get; set; }
         public System.DateTime Fecha_desde { get; set; }
         public System.DateTime Fecha_Hasta { get; set; }
+        public double Precio { get; set; }
+        public double PrecioOferta { get; set; }
+        public byte[] Fotoproducto { get; set; }
     
         public virtual Producto Producto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Valoracion_Oferta> Valoracion_Oferta { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace MisOfertas.Datos
     
     public partial class Cliente
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cliente()
-        {
-            this.Valoracion_Oferta = new HashSet<Valoracion_Oferta>();
-        }
-    
         public string Rut { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
@@ -32,7 +26,5 @@ namespace MisOfertas.Datos
     
         public virtual Ciudad Ciudad { get; set; }
         public virtual Sexo Sexo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Valoracion_Oferta> Valoracion_Oferta { get; set; }
     }
 }

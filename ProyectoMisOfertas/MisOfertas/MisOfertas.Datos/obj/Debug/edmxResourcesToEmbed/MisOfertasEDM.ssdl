@@ -56,16 +56,20 @@
     </Key>
     <Property Name="Idoferta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Idproducto" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Porc_dscto" Type="float" Nullable="false" />
     <Property Name="Fecha_desde" Type="date" Nullable="false" />
     <Property Name="Fecha_Hasta" Type="date" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="PrecioOferta" Type="float" Nullable="false" />
+    <Property Name="Fotoproducto" Type="image" Nullable="false" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="Idproducto" />
     </Key>
     <Property Name="Idproducto" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Idrubro" Type="int" Nullable="false" />
     <Property Name="Precio" Type="float" Nullable="false" />
     <Property Name="Totalstock" Type="int" Nullable="false" />
@@ -103,19 +107,15 @@
     <Property Name="Idciudad" Type="int" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MisOfertas.dbo.Valoracion_Oferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="Valoracion_Oferta">
     <Key>
-      <PropertyRef Name="Fotooferta" />
-      <PropertyRef Name="Idoferta" />
-      <PropertyRef Name="Rut" />
-      <PropertyRef Name="Idnotaoferta" />
+      <PropertyRef Name="IdValoracion" />
     </Key>
-    <Property Name="Fotooferta" Type="image" Nullable="false" />
+    <Property Name="IdValoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Idoferta" Type="int" Nullable="false" />
     <Property Name="Rut" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Idnotaoferta" Type="int" Nullable="false" />
+    <Property Name="Fotooferta" Type="image" Nullable="false" />
   </EntityType>
   <Association Name="FK_Administrador_Sexo">
     <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
@@ -225,18 +225,6 @@ advertencia 6002: La tabla o vista 'MisOfertas.dbo.Valoracion_Oferta' no tiene d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Valoracion_Oferta_Cliente">
-    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cliente">
-        <PropertyRef Name="Rut" />
-      </Principal>
-      <Dependent Role="Valoracion_Oferta">
-        <PropertyRef Name="Rut" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Valoracion_Oferta_Nota_Oferta">
     <End Role="Nota_Oferta" Type="Self.Nota_Oferta" Multiplicity="1" />
     <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
@@ -246,18 +234,6 @@ advertencia 6002: La tabla o vista 'MisOfertas.dbo.Valoracion_Oferta' no tiene d
       </Principal>
       <Dependent Role="Valoracion_Oferta">
         <PropertyRef Name="Idnotaoferta" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Valoracion_Oferta_Oferta">
-    <End Role="Oferta" Type="Self.Oferta" Multiplicity="1" />
-    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Oferta">
-        <PropertyRef Name="Idoferta" />
-      </Principal>
-      <Dependent Role="Valoracion_Oferta">
-        <PropertyRef Name="Idoferta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -273,14 +249,7 @@ advertencia 6002: La tabla o vista 'MisOfertas.dbo.Valoracion_Oferta' no tiene d
     <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tiendas" EntityType="Self.Tiendas" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Valoracion_Oferta" EntityType="Self.Valoracion_Oferta" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Valoracion_Oferta].[Fotooferta] AS [Fotooferta], 
-    [Valoracion_Oferta].[Idoferta] AS [Idoferta], 
-    [Valoracion_Oferta].[Rut] AS [Rut], 
-    [Valoracion_Oferta].[Idnotaoferta] AS [Idnotaoferta]
-    FROM [dbo].[Valoracion_Oferta] AS [Valoracion_Oferta]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Valoracion_Oferta" EntityType="Self.Valoracion_Oferta" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Administrador_Sexo" Association="Self.FK_Administrador_Sexo">
       <End Role="Sexo" EntitySet="Sexo" />
       <End Role="Administrador" EntitySet="Administrador" />
@@ -317,16 +286,8 @@ advertencia 6002: La tabla o vista 'MisOfertas.dbo.Valoracion_Oferta' no tiene d
       <End Role="Ciudad" EntitySet="Ciudad" />
       <End Role="Tiendas" EntitySet="Tiendas" />
     </AssociationSet>
-    <AssociationSet Name="FK_Valoracion_Oferta_Cliente" Association="Self.FK_Valoracion_Oferta_Cliente">
-      <End Role="Cliente" EntitySet="Cliente" />
-      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
-    </AssociationSet>
     <AssociationSet Name="FK_Valoracion_Oferta_Nota_Oferta" Association="Self.FK_Valoracion_Oferta_Nota_Oferta">
       <End Role="Nota_Oferta" EntitySet="Nota_Oferta" />
-      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Valoracion_Oferta_Oferta" Association="Self.FK_Valoracion_Oferta_Oferta">
-      <End Role="Oferta" EntitySet="Oferta" />
       <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
     </AssociationSet>
   </EntityContainer>

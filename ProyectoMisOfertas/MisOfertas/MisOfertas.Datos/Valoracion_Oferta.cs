@@ -14,13 +14,12 @@ namespace MisOfertas.Datos
     
     public partial class Valoracion_Oferta
     {
-        public byte[] Fotooferta { get; set; }
+        public int IdValoracion { get; set; }
         public int Idoferta { get; set; }
         public string Rut { get; set; }
         public int Idnotaoferta { get; set; }
+        public byte[] Fotooferta { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         public virtual Nota_Oferta Nota_Oferta { get; set; }
-        public virtual Oferta Oferta { get; set; }
     }
 }

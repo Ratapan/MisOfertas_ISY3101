@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
 using MisOfertas.Negocio;
 
+
 namespace MisOfertasWPF
 {
     /// <summary>
@@ -31,17 +32,14 @@ namespace MisOfertasWPF
         
         private async void Btn_Iniciarsesion_Click(object sender, RoutedEventArgs e)
         {
-            //encriptacion de la contraseña para poder compararla con la que esta en la BBDD
-            //string pass = Encrypt.GetSHA256(txt_contrasena.Text.Trim());
-            string pass = Encrypt.Encriptar(pass_contrasena.Password.ToString().Trim());
 
             
             MisOfertas.Negocio.Cliente cli = new MisOfertas.Negocio.Cliente();
 
             //llamando a metodo para validar datos
-            if (cli.ValidacionCli(txt_usuario.Text, pass))
+            if (cli.ValidacionCli(txt_usuario.Text, pass_contrasena.Password.ToString().Trim()))
             {
-                //MessageBox.Show("Usuario Existe", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                
                 Bienvenido saludo = new Bienvenido();
 
                 cli.Rut = txt_usuario.Text;
@@ -78,7 +76,7 @@ namespace MisOfertasWPF
             }
             else
             {
-                //MessageBox.Show("Usuario No Existe", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                
                 await this.ShowMessageAsync("ERROR", "Usuario No Encontrado // Usuario o Contraseña Incorrecto");
             }
         }

@@ -30,42 +30,192 @@
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
-        
+
 
     </Style>
 
-    <!--<Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate TargetType="{x:Type Button}">
-                <Grid x:Name="grid">
-                    <Border x:Name="border" CornerRadius="0,20,20,0" BorderBrush="#707070" BorderThickness="1" Background="#FF363636">
-                        <ContentPresenter HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                      TextElement.FontWeight="Normal">
-                        </ContentPresenter>
-                    </Border>
-                </Grid>
-                <ControlTemplate.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" TargetName="border" Value="#BEE6FD"/>
-                        <Setter Property="BorderBrush" TargetName="border" Value="#3C7FB1"/>
-                    </Trigger>
-                    <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="BorderBrush" TargetName="border" Value="#2C628B"/>
-                    </Trigger>
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
-                    </Trigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
-        </Setter.Value>
-    </Setter>-->
+    <Style TargetType="Button" x:Key="BotonFiltro">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
 
     <!--END BOTONES-->
 
-    <!--IMAGENES-->
+    <!--ListBox-->
 
-    <!--END IMAGENES-->
+    <!--Plantilla para Item de Listbox-->
+    <DataTemplate x:Key="ProductoTemplate">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="{Binding Path=Fotoproducto}" Width="200" Height="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Path=Descripcion}" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Precio: " FontWeight="Bold"/>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Precio}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Total Stock: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding Path=Totalstock}" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <!--End Plantilla para Item de Listbox-->
+
+
+    <!--Style Item de Listbox-->
+    <Style TargetType="ListBoxItem" x:Key="ProductoItemContainerStyle">
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Height" Value="260"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="outsideBorder" Background="White"
+                        Margin="2" CornerRadius="20" Padding="2"
+                        BorderBrush="#FFECB217" BorderThickness="1" >
+                        <ContentPresenter Margin="2" RecognizesAccessKey="True"
+                        HorizontalAlignment="Stretch"/>
+                    </Border>
+                    <!--<Propiedades del Item cuando este se encuentre seleccionado (color de fondo, borde y su opacidad)-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter TargetName="outsideBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FFE6E6E6" Opacity="0.3"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--End Style Item de Listbox-->
+
+    <!--Plantilla para Item de Listbox (cargar oferta)-->
+    <DataTemplate x:Key="ProductoTemplateNoImagen">
+        <StackPanel>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="{Binding Path=Fotoproducto}" Width="50" Height="50" />
+            </StackPanel>-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Path=Descripcion}" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Precio: " FontWeight="Bold"/>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Precio}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Total Stock: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding Path=Totalstock}" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <!--End Plantilla para Item de Listbox-->
+
+
+    <!--Style Item de Listbox (cargar oferta)-->
+    <Style TargetType="ListBoxItem" x:Key="ProductoItemContainerNoImagenStyle">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="outsideBorder" Background="White"
+                        Margin="2" CornerRadius="20" Padding="2"
+                        BorderBrush="#FFECB217" BorderThickness="1" >
+                        <ContentPresenter Margin="2" RecognizesAccessKey="True"
+                        HorizontalAlignment="Stretch"/>
+                    </Border>
+                    <!--<Propiedades del Item cuando este se encuentre seleccionado (color de fondo, borde y su opacidad)-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter TargetName="outsideBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FFE6E6E6" Opacity="0.3"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--End Style Item de Listbox-->
+
+    <!--Plantilla para Item de Listbox (OFERTA)-->
+    <DataTemplate x:Key="OfertaTemplate">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="{Binding Path=Fotoproducto}" Width="200" Height="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Path=Descripcion}" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Precio: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding Path=Precio}" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Precio Oferta: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding Path=PrecioOferta}" Foreground="Red" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Porcentaje dcto: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding Path=Porc_dscto}" FontWeight="Bold"/>
+                <TextBlock Margin="0,0,0,0" Text="%" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5,0,0,0" Text="Fecha Hasta: " FontWeight="Bold"/>
+                <TextBlock Margin="5,0,0,0" Text="{Binding Path=Fecha_Hasta}"/>
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="210" HorizontalContentAlignment="Center" Content="Valorar oferta"></Button>
+            </StackPanel>-->
+        </StackPanel>
+    </DataTemplate>
+    <!--End Plantilla para Item de Listbox (OFERTA)-->
+
+
+    <!--Style Item de Listbox (OFERTA)-->
+    <Style TargetType="ListBoxItem" x:Key="OfertaItemContainerStyle">
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Height" Value="320"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="outsideBorder" Background="White"
+                        Margin="2" CornerRadius="20" Padding="2"
+                        BorderBrush="#FFECB217" BorderThickness="1" >
+                        <ContentPresenter Margin="2" RecognizesAccessKey="True"
+                        HorizontalAlignment="Stretch"/>
+                    </Border>
+                    <!--<Propiedades del Item cuando este se encuentre seleccionado (color de fondo, borde y su opacidad)-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter TargetName="outsideBorder" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#FFE6E6E6" Opacity="0.3"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--End Style Item de Listbox (OFERTA)-->
+
+    <!--END Listbox-->
 
 
 

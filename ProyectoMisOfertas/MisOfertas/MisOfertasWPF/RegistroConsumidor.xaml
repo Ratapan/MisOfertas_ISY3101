@@ -48,6 +48,8 @@
                 <TextBox x:Name="txt_email" Background="#FFFDF5EF" Margin="251,344,10,217"/>
                 <PasswordBox x:Name="pass_contrasena" Background="#FFFDF5EF" Margin="251,390,10,171"/>
                 <PasswordBox x:Name="pass_confir_contrasena" Background="#FFFDF5EF" Margin="251,442,10,119"/>
+                <CheckBox Margin="80,482,462,88"/>
+                <TextBlock Text="¿Le gustaria recibir Nuevas ofertas al correo electronico?" FontSize="15" Margin="103,481,80,84"/>
 
                 <Button x:Name="Btn_registrar" Content="Registrar" FontSize="25" Margin="153,517,171,0" VerticalAlignment="Top" Width="236"  mah:ControlsHelper.FocusBorderBrush="White" Style="{DynamicResource BotonMinimal}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="34" Click="Btn_registrar_Click" />
 

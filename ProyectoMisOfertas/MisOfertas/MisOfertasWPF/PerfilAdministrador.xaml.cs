@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
 using MisOfertas.Negocio;
+using System.IO;
 
 namespace MisOfertasWPF
 {
@@ -24,7 +25,21 @@ namespace MisOfertasWPF
         public PerfilAdministrador()
         {
             InitializeComponent();
+
+            dp_fdesde.SelectedDate = DateTime.Today;
+
+            MisOfertas.Negocio.Producto pro = new Producto();
+            MisOfertas.Negocio.Oferta Ofer = new MisOfertas.Negocio.Oferta();
+
+            lboxProductos.ItemsSource = pro.ListaProductos(); //productos para Ralizar dscunto
+            lboxProductosAdmi.ItemsSource = pro.ListaProductos(); //productos
+            lboxOfertasAdmi.ItemsSource = Ofer.ListaOferta(); //ofertas
         }
+        public int idpro;
+        public string descrip;
+        public double Precio;
+        public double Precioofer;
+        public Byte[] Fotoproducto;
 
         public void Limpiar()
         {
@@ -39,6 +54,22 @@ namespace MisOfertasWPF
 
         }
 
+        public BitmapImage ObtenerImagen(byte[] codeFoto)
+        {
+            Stream stream = new MemoryStream(codeFoto);
+
+            BitmapImage image = new BitmapImage();
+            stream.Position = 0;
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.StreamSource = stream;
+            image.EndInit();
+            image.Freeze();
+
+            return image;
+
+        }
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (cb_tipo.SelectedIndex == 1)
@@ -50,16 +81,16 @@ namespace MisOfertasWPF
                 }
                 else
                 {
-                    string pass = Encrypt.Encriptar(txt_contrasena.Text.Trim());
+                   
 
-                    Administrador admin = new Administrador()
+                    MisOfertas.Negocio.Administrador admin = new MisOfertas.Negocio.Administrador()
                     {
                         Rut = txt_rut.Text,
                         Nombres = txt_nombres.Text,
                         Apellidos = txt_apellidos.Text,
                         Idsexo = cb_sexo.SelectedIndex,
                         Idtienda = cb_tienda.SelectedIndex,
-                        Contrasena = pass
+                        Contrasena = txt_contrasena.Text.Trim()
                     };
 
                     if (admin.Create())
@@ -84,16 +115,16 @@ namespace MisOfertasWPF
                 }
                 else
                 {
-                    string pass = Encrypt.Encriptar(txt_contrasena.Text.Trim());
+                    
 
-                    Encargado_Tienda encargado = new Encargado_Tienda()
+                    MisOfertas.Negocio.Encargado_Tienda encargado = new MisOfertas.Negocio.Encargado_Tienda()
                     {
                         Rut = txt_rut.Text,
                         Nombres = txt_nombres.Text,
                         Apellidos = txt_apellidos.Text,
                         Idsexo = cb_sexo.SelectedIndex,
                         Idtienda = cb_tienda.SelectedIndex,
-                        Contrasena = pass
+                        Contrasena = txt_contrasena.Text.Trim()
                     };
 
                     if (encargado.Create())
@@ -116,7 +147,7 @@ namespace MisOfertasWPF
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            Encargado_Tienda encargado = new Encargado_Tienda()
+            MisOfertas.Negocio.Encargado_Tienda encargado = new MisOfertas.Negocio.Encargado_Tienda()
             {
                 Rut = txt_rut.Text,
             };
@@ -128,15 +159,15 @@ namespace MisOfertasWPF
                 cb_sexo.SelectedIndex = encargado.Idsexo;
                 cb_tienda.SelectedIndex = encargado.Idtienda;
                 cb_tipo.SelectedIndex = 2;
-                txt_contrasena.Text = Encrypt.DesEncriptar(encargado.Contrasena);
-                txt_conf_contrasena.Text = Encrypt.DesEncriptar(encargado.Contrasena);
+                txt_contrasena.Text = encargado.Contrasena;
+                txt_conf_contrasena.Text = encargado.Contrasena;
 
                 //MessageBox.Show("Encargado de Tienda Encontrado!", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                 await this.ShowMessageAsync("AVISO", "Encargado de Tienda Encontrado!");
             }
             else
             {
-                Administrador admin = new Administrador()
+                MisOfertas.Negocio.Administrador admin = new MisOfertas.Negocio.Administrador()
                 {
                     Rut = txt_rut.Text,
                 };
@@ -148,8 +179,8 @@ namespace MisOfertasWPF
                     cb_sexo.SelectedIndex = admin.Idsexo;
                     cb_tienda.SelectedIndex = admin.Idtienda;
                     cb_tipo.SelectedIndex = 1;
-                    txt_contrasena.Text = Encrypt.DesEncriptar(admin.Contrasena);
-                    txt_conf_contrasena.Text = Encrypt.DesEncriptar(admin.Contrasena);
+                    txt_contrasena.Text = admin.Contrasena;
+                    txt_conf_contrasena.Text = admin.Contrasena;
 
                     //MessageBox.Show("Administrador Encontrado!", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                     await this.ShowMessageAsync("AVISO", "Administrador Encontrado!");
@@ -187,16 +218,16 @@ namespace MisOfertasWPF
                     }
                     else
                     {
-                        string pass = Encrypt.Encriptar(txt_contrasena.Text.Trim());
+                        
 
-                        Administrador admin = new Administrador()
+                        MisOfertas.Negocio.Administrador admin = new MisOfertas.Negocio.Administrador()
                         {
                             Rut = txt_rut.Text,
                             Nombres = txt_nombres.Text,
                             Apellidos = txt_apellidos.Text,
                             Idsexo = cb_sexo.SelectedIndex,
                             Idtienda = cb_tienda.SelectedIndex,
-                            Contrasena = pass
+                            Contrasena = txt_contrasena.Text.Trim()
                         };
 
                         if (admin.Update())
@@ -221,16 +252,16 @@ namespace MisOfertasWPF
                     }
                     else
                     {
-                        string pass = Encrypt.Encriptar(txt_contrasena.Text.Trim());
+                        
 
-                        Encargado_Tienda encargado = new Encargado_Tienda()
+                        MisOfertas.Negocio.Encargado_Tienda encargado = new MisOfertas.Negocio.Encargado_Tienda()
                         {
                             Rut = txt_rut.Text,
                             Nombres = txt_nombres.Text,
                             Apellidos = txt_apellidos.Text,
                             Idsexo = cb_sexo.SelectedIndex,
                             Idtienda = cb_tienda.SelectedIndex,
-                            Contrasena = pass
+                            Contrasena = txt_contrasena.Text.Trim()
                         };
 
                         if (encargado.Update())
@@ -261,7 +292,7 @@ namespace MisOfertasWPF
 
             if (Result == MessageDialogResult.Affirmative)
             {
-                Encargado_Tienda encargado = new Encargado_Tienda()
+                MisOfertas.Negocio.Encargado_Tienda encargado = new MisOfertas.Negocio.Encargado_Tienda()
                 {
                     Rut = txt_rut.Text,
                 };
@@ -273,7 +304,7 @@ namespace MisOfertasWPF
                 }
                 else
                 {
-                    Administrador admin = new Administrador()
+                    MisOfertas.Negocio.Administrador admin = new MisOfertas.Negocio.Administrador()
                     {
                         Rut = txt_rut.Text,
                     };
@@ -316,6 +347,193 @@ namespace MisOfertasWPF
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        
+        
+
+        private void LboxProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (ListBox)sender;
+            var Producto = (MisOfertas.Datos.Producto)item.SelectedItem;
+            
+
+            try
+            {
+                txt_NomProduc.Text = Producto.Descripcion;
+                txt_ValorProduc.Text = "Valor: " + Producto.Precio.ToString();
+                txt_Stockproduc.Text = "Total Stock: " + Producto.Totalstock.ToString();
+                Img_Produc.Source = ObtenerImagen(Producto.Fotoproducto);
+                idpro = Producto.Idproducto;
+                Precio = Producto.Precio;
+                Fotoproducto = Producto.Fotoproducto;
+                descrip = Producto.Descripcion;
+
+            }
+            catch (Exception)
+            {
+                txt_NomProduc.Text = null;
+                txt_ValorProduc.Text = null;
+                txt_Stockproduc.Text = null;
+                Img_Produc.Source = null;
+                idpro = 0;
+                Precio = 0;
+                Fotoproducto = null;
+                descrip = null;
+            }
+        }
+
+        private void Cb_rubro_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MisOfertas.Negocio.Producto pro = new MisOfertas.Negocio.Producto();
+
+            if (cb_rubro.SelectedIndex == 0)
+            {
+                lboxProductos.ItemsSource = pro.ListaProductos();
+                lboxProductos.Items.Refresh();
+            }
+            else
+            {
+                lboxProductos.ItemsSource = pro.ListaFiltrada(cb_rubro.SelectedIndex);
+                lboxProductos.Items.Refresh();
+            }
+
+
+        }
+        public void LimpiarOferta()
+        {
+            txt_NomProduc.Text = null;
+            txt_ValorProduc.Text = null;
+            txt_Stockproduc.Text = null;
+            txt_descuento.Text = null;
+            Img_Produc.Source = null;
+            dp_fhasta.SelectedDate = null;
+            idpro = 0;
+            cb_rubro.SelectedIndex = 0;
+            lboxProductos.SelectedItem = null;
+        }
+
+
+        private async void Btn_confirmar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txt_NomProduc.Text != string.Empty)
+            {
+                
+
+                MisOfertas.Negocio.Oferta ofer = new MisOfertas.Negocio.Oferta()
+                {
+
+
+                    Idproducto = idpro,
+                    Descripcion = descrip,
+                    Porc_dscto = Convert.ToDouble(txt_descuento.Text),
+                    Fecha_desde = DateTime.Today,
+                    Fecha_Hasta = (DateTime)dp_fhasta.SelectedDate,
+                    Precio = Precio,
+                    PrecioOferta = Precio / 100 * (100 - Convert.ToDouble(txt_descuento.Text)),
+                    Fotoproducto = Fotoproducto,
+                };
+                if (ofer.validaNuevaOferta(idpro))
+                {
+
+                    if (ofer.Create())
+                    {
+                        await this.ShowMessageAsync("AVISO", "La Oferta Fue Creada Exitosamente");
+                        LimpiarOferta();
+                    }
+                    else
+                    {
+                        await this.ShowMessageAsync("ERROR", "La Oferta No Pude ser Creada");
+                    }
+                }
+                else
+                {
+                    await this.ShowMessageAsync("ERROR", "El Producto ya tiene una Oferta Vigente");
+                }
+
+            }
+            
+            else
+            {
+                await this.ShowMessageAsync("ERROR", "Debes Seleccionar un Elemento de la lista para Continuar");
+            }
+
+
+        }
+
+
+
+        private void Btn_todos_Click(object sender, RoutedEventArgs e)
+        {
+            Producto pro = new Producto();
+            lboxProductosAdmi.ItemsSource = pro.ListaProductos();
+            lboxProductosAdmi.Items.Refresh();
+
+        }
+
+        private void Btn_alimentos_Click(object sender, RoutedEventArgs e)
+        {
+            Producto pro = new Producto();
+            lboxProductosAdmi.ItemsSource = pro.ListaFiltrada(1);
+            lboxProductosAdmi.Items.Refresh();
+        }
+
+        private void Btn_electronica_Click(object sender, RoutedEventArgs e)
+        {
+            Producto pro = new Producto();
+            lboxProductosAdmi.ItemsSource = pro.ListaFiltrada(2);
+            lboxProductosAdmi.Items.Refresh();
+
+        }
+
+        private void Btn_blanca_Click(object sender, RoutedEventArgs e)
+        {
+            Producto pro = new Producto();
+            lboxProductosAdmi.ItemsSource = pro.ListaFiltrada(3);
+            lboxProductosAdmi.Items.Refresh();
+
+        }
+
+        private void Btn_ropa_Click(object sender, RoutedEventArgs e)
+        {
+            Producto pro = new Producto();
+            lboxProductosAdmi.ItemsSource = pro.ListaFiltrada(4);
+            lboxProductosAdmi.Items.Refresh();
+        }
+
+        private void Btn_todosOfer_Click(object sender, RoutedEventArgs e)
+        {
+            Oferta ofer = new MisOfertas.Negocio.Oferta();
+            lboxOfertasAdmi.ItemsSource = ofer.ListaOferta();
+            lboxOfertasAdmi.Items.Refresh();
+        }
+
+        private void Btn_alimentosOfer_Click(object sender, RoutedEventArgs e)
+        {
+            Oferta ofer = new MisOfertas.Negocio.Oferta();
+            lboxOfertasAdmi.ItemsSource = ofer.ListaFiltrada(1);
+            lboxOfertasAdmi.Items.Refresh();
+        }
+
+        private void Btn_electronicaOfer_Click(object sender, RoutedEventArgs e)
+        {
+            Oferta ofer = new MisOfertas.Negocio.Oferta();
+            lboxOfertasAdmi.ItemsSource = ofer.ListaFiltrada(2);
+            lboxOfertasAdmi.Items.Refresh();
+
+        }
+
+        private void Btn_blancaOfer_Click(object sender, RoutedEventArgs e)
+        {
+            Oferta ofer = new MisOfertas.Negocio.Oferta();
+            lboxOfertasAdmi.ItemsSource = ofer.ListaFiltrada(3);
+            lboxOfertasAdmi.Items.Refresh();
+        }
+
+        private void Btn_ropaOfer_Click(object sender, RoutedEventArgs e)
+        {
+            Oferta ofer = new MisOfertas.Negocio.Oferta();
+            lboxOfertasAdmi.ItemsSource = ofer.ListaFiltrada(4);
+            lboxOfertasAdmi.Items.Refresh();
         }
     }
 }

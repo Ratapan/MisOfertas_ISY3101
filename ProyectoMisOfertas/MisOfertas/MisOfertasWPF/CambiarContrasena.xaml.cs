@@ -44,12 +44,10 @@ namespace MisOfertasWPF
         private async void Btn_confi_Click(object sender, RoutedEventArgs e)
         {
           Cliente cli = new Cliente();
-            string pass = Encrypt.Encriptar(pass_actual.Password.ToString().Trim());
-            string newpass = Encrypt.Encriptar(pass_nueva.Password.ToString().Trim());
 
             if (pass_nueva.Password.Equals(pass_repite.Password))
             {
-                if (cli.UpdatePass(id, pass, newpass))
+                if (cli.UpdatePass(id, pass_actual.Password.ToString().Trim(), pass_nueva.Password.ToString().Trim()))
                 {
                     
                     MessageDialogResult Result = await this.ShowMessageAsync("AVISO", "Modificacion Realizada Correctamente.", MessageDialogStyle.Affirmative);

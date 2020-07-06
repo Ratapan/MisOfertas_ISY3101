@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
 using MisOfertas.Negocio;
 
 namespace MisOfertasWPF
@@ -44,7 +45,7 @@ namespace MisOfertasWPF
             this.Close();
         }
 
-        private void Btn_registrar_Click(object sender, RoutedEventArgs e)
+        private async void Btn_registrar_Click(object sender, RoutedEventArgs e)
         {
             if (pass_contrasena.Password.ToString().Trim() != pass_confir_contrasena.Password.ToString().Trim())
             {
@@ -53,7 +54,7 @@ namespace MisOfertasWPF
             else
             {
 
-                string pass = Encrypt.Encriptar(pass_contrasena.Password.ToString().Trim());
+                
 
                 Cliente cli = new Cliente()
                 {
@@ -64,18 +65,20 @@ namespace MisOfertasWPF
                     Idciudad = cb_ciudad.SelectedIndex,
                     Nacimiento = (DateTime)dp_nacimiento.SelectedDate,
                     Email = txt_email.Text,
-                    Contrasena = pass
+                    Contrasena = pass_contrasena.Password.ToString().Trim()
                 };
 
                 if (cli.Create())
                 {
-                    MessageBox.Show("Registrado!", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    await this.ShowMessageAsync("AVISO", "Haz sido Registrado exitosamente");
                     Limpiar();
+                    this.Close();
 
                 }
                 else
                 {
-                    MessageBox.Show("No Registrado!", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    await this.ShowMessageAsync("ERROR", "No se ha Podido Registrar tus Datos");
                 }
             }
 

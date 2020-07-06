@@ -120,11 +120,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="MisOfertasEDM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MisOfertasEDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="MisOfertasEDM.edmx.diagram">
       <DependentUpon>MisOfertasEDM.edmx</DependentUpon>
     </None>
@@ -134,8 +136,8 @@
   <ItemGroup>
     <Content Include="MisOfertasEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MisOfertasEDM.Context.cs</LastGenOutput>
       <DependentUpon>MisOfertasEDM.edmx</DependentUpon>
+      <LastGenOutput>MisOfertasEDM.Context.cs</LastGenOutput>
     </Content>
     <Content Include="MisOfertasEDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

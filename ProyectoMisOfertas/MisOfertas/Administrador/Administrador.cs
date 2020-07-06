@@ -54,6 +54,7 @@ namespace MisOfertas.Negocio
             }
         }
 
+
         public bool Create()
         {
             MisOfertas.Datos.MisOfertasEntities bd = new Datos.MisOfertasEntities();

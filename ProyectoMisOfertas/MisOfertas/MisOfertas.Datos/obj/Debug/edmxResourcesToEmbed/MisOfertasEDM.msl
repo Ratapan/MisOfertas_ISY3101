@@ -61,9 +61,13 @@
         <MappingFragment StoreEntitySet="Oferta">
           <ScalarProperty Name="Idoferta" ColumnName="Idoferta" />
           <ScalarProperty Name="Idproducto" ColumnName="Idproducto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Porc_dscto" ColumnName="Porc_dscto" />
           <ScalarProperty Name="Fecha_desde" ColumnName="Fecha_desde" />
           <ScalarProperty Name="Fecha_Hasta" ColumnName="Fecha_Hasta" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="PrecioOferta" ColumnName="PrecioOferta" />
+          <ScalarProperty Name="Fotoproducto" ColumnName="Fotoproducto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -118,10 +122,11 @@
     <EntitySetMapping Name="Valoracion_Oferta">
       <EntityTypeMapping TypeName="MisOfertasModel.Valoracion_Oferta">
         <MappingFragment StoreEntitySet="Valoracion_Oferta">
-          <ScalarProperty Name="Fotooferta" ColumnName="Fotooferta" />
+          <ScalarProperty Name="IdValoracion" ColumnName="IdValoracion" />
           <ScalarProperty Name="Idoferta" ColumnName="Idoferta" />
           <ScalarProperty Name="Rut" ColumnName="Rut" />
           <ScalarProperty Name="Idnotaoferta" ColumnName="Idnotaoferta" />
+          <ScalarProperty Name="Fotooferta" ColumnName="Fotooferta" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

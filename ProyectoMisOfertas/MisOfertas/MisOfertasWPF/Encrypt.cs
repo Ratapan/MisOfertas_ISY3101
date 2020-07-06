@@ -1,43 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MisOfertasWPF
 {
     class Encrypt
     {
-        //public static string GetSHA256(string str)
-        //{
-        //    SHA256 sha256 = SHA256Managed.Create();
-        //    ASCIIEncoding encoding = new ASCIIEncoding();
-        //    byte[] stream = null;
-        //    StringBuilder sb = new StringBuilder();
-        //    stream = sha256.ComputeHash(encoding.GetBytes(str));
-        //    for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
-        //    return sb.ToString();
-        //}
 
-        public static string Encriptar(string cadenaAencriptar)
+        public static byte[] StreamToByte(Stream input)
         {
-            string result = string.Empty;
-            byte[] encryted =
-            System.Text.Encoding.Unicode.GetBytes(cadenaAencriptar);
-            result = Convert.ToBase64String(encryted);
-            return result;
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
         }
 
-        public static string DesEncriptar(string cadenaAdesencriptar)
+        public static BitmapImage ByteToImage(byte[] codeFoto)
         {
-            string result = string.Empty;
-            byte[] decryted =
-            Convert.FromBase64String(cadenaAdesencriptar);
-            //result = 
-            System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
-            result = System.Text.Encoding.Unicode.GetString(decryted);
-            return result;
+            Stream stream = new MemoryStream(codeFoto);
+
+            BitmapImage image = new BitmapImage();
+            stream.Position = 0;
+            image.BeginInit();
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.StreamSource = stream;
+            image.EndInit();
+            image.Freeze();
+
+            return image;
+
         }
     }
 }

@@ -71,6 +71,9 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="CommonBC.cs" />
     <Compile Include="Encargado_Tienda.cs" />
+    <Compile Include="Oferta.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="Valoracion_Oferta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

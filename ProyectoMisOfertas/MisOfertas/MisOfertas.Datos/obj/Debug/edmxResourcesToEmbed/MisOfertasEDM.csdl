@@ -37,7 +37,6 @@
     <Property Name="Contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Ciudad" Relationship="Self.FK_Cliente_Ciudad" FromRole="Cliente" ToRole="Ciudad" />
     <NavigationProperty Name="Sexo" Relationship="Self.FK_Cliente_Sexo" FromRole="Cliente" ToRole="Sexo" />
-    <NavigationProperty Name="Valoracion_Oferta" Relationship="Self.FK_Valoracion_Oferta_Cliente" FromRole="Cliente" ToRole="Valoracion_Oferta" />
   </EntityType>
   <EntityType Name="Encargado_Tienda">
     <Key>
@@ -66,18 +65,21 @@
     </Key>
     <Property Name="Idoferta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Idproducto" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Porc_dscto" Type="Double" Nullable="false" />
     <Property Name="Fecha_desde" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Fecha_Hasta" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
+    <Property Name="PrecioOferta" Type="Double" Nullable="false" />
+    <Property Name="Fotoproducto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="Self.FK_Oferta_Producto" FromRole="Oferta" ToRole="Producto" />
-    <NavigationProperty Name="Valoracion_Oferta" Relationship="Self.FK_Valoracion_Oferta_Oferta" FromRole="Oferta" ToRole="Valoracion_Oferta" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="Idproducto" />
     </Key>
     <Property Name="Idproducto" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Idrubro" Type="Int32" Nullable="false" />
     <Property Name="Precio" Type="Double" Nullable="false" />
     <Property Name="Totalstock" Type="Int32" Nullable="false" />
@@ -126,18 +128,14 @@
   </EntityType>
   <EntityType Name="Valoracion_Oferta">
     <Key>
-      <PropertyRef Name="Fotooferta" />
-      <PropertyRef Name="Idoferta" />
-      <PropertyRef Name="Rut" />
-      <PropertyRef Name="Idnotaoferta" />
+      <PropertyRef Name="IdValoracion" />
     </Key>
-    <Property Name="Fotooferta" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="IdValoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Idoferta" Type="Int32" Nullable="false" />
     <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Idnotaoferta" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Cliente" Relationship="Self.FK_Valoracion_Oferta_Cliente" FromRole="Valoracion_Oferta" ToRole="Cliente" />
+    <Property Name="Fotooferta" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Nota_Oferta" Relationship="Self.FK_Valoracion_Oferta_Nota_Oferta" FromRole="Valoracion_Oferta" ToRole="Nota_Oferta" />
-    <NavigationProperty Name="Oferta" Relationship="Self.FK_Valoracion_Oferta_Oferta" FromRole="Valoracion_Oferta" ToRole="Oferta" />
   </EntityType>
   <Association Name="FK_Administrador_Sexo">
     <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
@@ -199,18 +197,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Valoracion_Oferta_Cliente">
-    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cliente">
-        <PropertyRef Name="Rut" />
-      </Principal>
-      <Dependent Role="Valoracion_Oferta">
-        <PropertyRef Name="Rut" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Encargado_Tienda_Sexo">
     <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
     <End Role="Encargado_Tienda" Type="Self.Encargado_Tienda" Multiplicity="*" />
@@ -259,18 +245,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Valoracion_Oferta_Oferta">
-    <End Role="Oferta" Type="Self.Oferta" Multiplicity="1" />
-    <End Role="Valoracion_Oferta" Type="Self.Valoracion_Oferta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Oferta">
-        <PropertyRef Name="Idoferta" />
-      </Principal>
-      <Dependent Role="Valoracion_Oferta">
-        <PropertyRef Name="Idoferta" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Producto_Rubro">
     <End Role="Rubro" Type="Self.Rubro" Multiplicity="1" />
     <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
@@ -316,10 +290,6 @@
       <End Role="Sexo" EntitySet="Sexo" />
       <End Role="Cliente" EntitySet="Cliente" />
     </AssociationSet>
-    <AssociationSet Name="FK_Valoracion_Oferta_Cliente" Association="Self.FK_Valoracion_Oferta_Cliente">
-      <End Role="Cliente" EntitySet="Cliente" />
-      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
-    </AssociationSet>
     <AssociationSet Name="FK_Encargado_Tienda_Sexo" Association="Self.FK_Encargado_Tienda_Sexo">
       <End Role="Sexo" EntitySet="Sexo" />
       <End Role="Encargado_Tienda" EntitySet="Encargado_Tienda" />
@@ -335,10 +305,6 @@
     <AssociationSet Name="FK_Oferta_Producto" Association="Self.FK_Oferta_Producto">
       <End Role="Producto" EntitySet="Producto" />
       <End Role="Oferta" EntitySet="Oferta" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Valoracion_Oferta_Oferta" Association="Self.FK_Valoracion_Oferta_Oferta">
-      <End Role="Oferta" EntitySet="Oferta" />
-      <End Role="Valoracion_Oferta" EntitySet="Valoracion_Oferta" />
     </AssociationSet>
     <AssociationSet Name="FK_Producto_Rubro" Association="Self.FK_Producto_Rubro">
       <End Role="Rubro" EntitySet="Rubro" />

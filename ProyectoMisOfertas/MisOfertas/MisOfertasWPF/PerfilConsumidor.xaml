@@ -24,15 +24,81 @@
         <!--<Button Style="{DynamicResource BotonSinFondo}" Content="• Ofertas" FontSize="30" Foreground="white" Margin="269,84,888,675"/>
         <Button Style="{DynamicResource BotonSinFondo}" Content="• Locales" FontSize="30" Foreground="white" Margin="412,84,746,675"/>-->
         <mah:MetroTabControl Name="TCPrincipal" Background="Transparent"  mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:TabControlHelper.UnderlineMouseOverSelectedBrush="#FFBD6F29">
+            <mah:MetroTabItem Header="  • Productos" Margin="288,84,-288,-84">
+                <Grid>
+                    <Border Background="#FFBD6F29" Opacity="0.4" Margin="40,184,40,20" CornerRadius="30"/>
+                    <ListBox x:Name="lboxProductosConsu" Background="Transparent" Margin="50,193,50,29" ScrollViewer.HorizontalScrollBarVisibility = "Disabled" ItemTemplate="{DynamicResource ProductoTemplate}" ItemContainerStyle="{StaticResource ProductoItemContainerStyle}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation = "Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Border Background="#FFBD6F29" Margin="249,100,40,591" Opacity="0.7" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="267*"/>
+                                <ColumnDefinition Width="724*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_todos" Margin="50,10,42,10" Content="Todos" Style="{DynamicResource BotonFiltro}" Click="Btn_todos_Click"/>
+                            <Button x:Name="btn_alimentos" Margin="230,10,586,10" Content="Alimentos" Style="{DynamicResource BotonFiltro}"  Grid.ColumnSpan="2" Click="Btn_alimentos_Click" />
+                            <Button x:Name="btn_electronica" Margin="143,10,406,10" Content="Electronica" Style="{DynamicResource BotonFiltro}"  Grid.Column="1" Click="Btn_electronica_Click" />
+                            <Button x:Name="btn_blanca" Margin="323,10,226,10" Content="Linea Blanca" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_blanca_Click" />
+                            <Button x:Name="btn_ropa" Margin="503,10,46,10" Content="Ropa" Style="{DynamicResource BotonFiltro}"  Grid.Column="1" Click="Btn_ropa_Click"/>
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
+
+            </mah:MetroTabItem>
             <mah:MetroTabItem Header="  • Ofertas" Margin="288,84,-288,-84">
+                <Grid>
+                    <Border Background="#FFBD6F29" Opacity="0.4" Margin="40,184,40,215" CornerRadius="30"/>
+                    <ListBox x:Name="lboxOfertasConsu" Background="Transparent" Margin="50,193,50,231" ScrollViewer.HorizontalScrollBarVisibility = "Disabled" ItemTemplate="{DynamicResource OfertaTemplate}" ItemContainerStyle="{StaticResource OfertaItemContainerStyle}" SelectionChanged="LboxOfertasConsu_SelectionChanged_1">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation = "Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                    <Border Background="#FF3C3C3C" Margin="40,557,641,24" CornerRadius="20,0,0,20" RenderTransformOrigin="0.389,0.488"/>
+                    <Image x:Name="Img_Produc" Margin="62,557,1023,24"/>
+                    <TextBox x:Name="txt_NomProduc" Margin="271,565,646,156" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="20" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_ValorProduc" Margin="271,625,646,96" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="20" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_Ofertaproduc" Margin="271,687,646,34" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="20" IsReadOnly="True"/>
+                    <Button x:Name="btn_Valorar" Content="Valorar Oferta" FontSize="20" Margin="1027,676,51,34" Style="{DynamicResource BotonMinimal}" Click="Btn_Valorar_Click" />
+
+                    <TextBlock Text="Boleta:" FontSize="30" Margin="644,557,537,156"/>
+                    <TextBlock Text="Nota:" FontSize="30" Margin="662,659,537,54"/>
+                    <TextBlock Text="Rut:" FontSize="30" Margin="682,610,538,103"/>
+                    <TextBox x:Name="txt_ruta" Margin="742,562,94,162" Background="#FFFDF5EF" IsReadOnly="True"/>
+                    <TextBox x:Name="txt_rutValorar" Margin="742,610,264,110" Background="#FFFDF5EF"/>
+                    <ComboBox x:Name="cb_nota" Margin="742,658,264,61" Background="#FFFDF5EF">
+                        <ListBoxItem Content="&lt;Seleccione&gt;"/>
+                        <ListBoxItem Content="Excelente"/>
+                        <ListBoxItem Content="Buena"/>
+                        <ListBoxItem Content="Mala"/>
+                    </ComboBox>
+                    <Button Content="•••" FontSize="25" Margin="1190,562,46,162" Style="{DynamicResource BotonMinimal}" VerticalAlignment="Center" Click="Button_Click_2"/>
+                    <Border Background="#FFBD6F29" Margin="249,100,40,591" Opacity="0.7" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="267*"/>
+                                <ColumnDefinition Width="724*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_todosOfer" Margin="50,10,42,10" Content="Todos" Style="{DynamicResource BotonFiltro}" Click="Btn_todosOfer_Click"/>
+                            <Button x:Name="btn_alimentosOfer" Margin="230,10,586,10" Content="Alimentos" Style="{DynamicResource BotonFiltro}" Grid.ColumnSpan="2" Click="Btn_alimentosOfer_Click"  />
+                            <Button x:Name="btn_electronicaOfer" Margin="143,10,406,10" Content="Electronica" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_electronicaOfer_Click"  />
+                            <Button x:Name="btn_blancaOfer" Margin="323,10,226,10" Content="Linea Blanca" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_blancaOfer_Click"  />
+                            <Button x:Name="btn_ropaOfer" Margin="503,10,46,10" Content="Ropa" Style="{DynamicResource BotonFiltro}" Grid.Column="1" Click="Btn_ropaOfer_Click"/>
+
+                        </Grid>
+                    </Border>
+                </Grid>
 
             </mah:MetroTabItem>
-            <mah:MetroTabItem Header="  • Locales" Margin="284,85,-283,-86" mah:TabControlHelper.UnderlineMouseOverSelectedBrush="#FFBD6F29">
 
-            </mah:MetroTabItem>
-            <mah:MetroTabItem Header="  • Valoraciones" Margin="284,85,-283,-86" mah:TabControlHelper.UnderlineMouseOverSelectedBrush="#FFBD6F29">
-
-            </mah:MetroTabItem>
             <mah:MetroTabItem Header="  • Mi Perfil" FontFamily="Segoe UI" FontSize="20" Margin="282,86,-277,-85">
                 <Grid>
                     <Border Background="#FF3C3C3C" CornerRadius="20" Margin="58,199,982,335">
